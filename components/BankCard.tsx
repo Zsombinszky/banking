@@ -10,12 +10,13 @@ const BankCard = ({account, userName, showBalance}: CreditCardProps) => {
                 <div className="bank-card_content">
                     <div>
                         <h1 className="text-16 font-semibold text-white">
-                            {account.name || userName}
+                            {userName}
                         </h1>
                         <p className="font-imb-plex-serif font-black text-white">
                             {formatAmount(account.currentBalance)}
                         </p>
                     </div>
+
                     <article className="flex flex-col gap-2">
                         <div className="flex justify-between">
                             <h1 className="text-12 font-semibold text-white">
@@ -30,10 +31,12 @@ const BankCard = ({account, userName, showBalance}: CreditCardProps) => {
                         </p>
                     </article>
                 </div>
+
                 <div className="bank-card_icon">
-                <Image src="/icons/Paypass.svg" width={20} height={24} alt={"pay"}/>
-                <Image className="ml-5" src="/icons/mastercard.svg" width={24} height={32} alt={"mastercard"}/>
+                    <Image src="/icons/Paypass.svg" width={20} height={24} alt={"pay"}/>
+                    <Image className="ml-5" src="/icons/mastercard.svg" width={24} height={32} alt={"mastercard"}/>
                 </div>
+
                 <Image className="absolute top-0 left-0" src="/icons/lines.svg" width={316} height={190} alt={"lines"}/>
             </Link>
 
