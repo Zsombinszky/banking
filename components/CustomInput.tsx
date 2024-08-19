@@ -8,14 +8,14 @@ import {authFormSchema} from "@/lib/utils";
 
 const formSchema = authFormSchema('sign-up')
 
-interface CustomInput {
+interface CustomInputProps {
     control: Control<z.infer<typeof formSchema>>,
     name: FieldPath<z.infer<typeof formSchema>>,
     label: string,
     placeholder: string
 }
 
-const CustomInput = ({control, name, label, placeholder}: CustomInput) => {
+const CustomInput = ({control, name, label, placeholder}: CustomInputProps) => {
     // Use the field name as the ID
     const id = name;
 
@@ -26,13 +26,13 @@ const CustomInput = ({control, name, label, placeholder}: CustomInput) => {
                 name={name}
                 render={({field}) => (
                     <div className="form-item">
-                        <FormLabel className="form-label" htmlFor={id}>
+                        <FormLabel className="form-label">
                             {label}
                         </FormLabel>
                         <div className="flex flex-col w-full">
                             <FormControl>
                                 <Input id={id} type={name === 'password' ? 'password' : 'text'} {...field}
-                                       className="input-class" placeholder={placeholder}/>
+                                       className="input-class" placeholder={placeholder} value={field.value ?? ''}/>
                             </FormControl>
                             <FormMessage className="form-message mt-2"/>
                         </div>

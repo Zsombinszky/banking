@@ -2,15 +2,16 @@ import React from 'react'
 import Link from "next/link";
 import {formatAmount} from "@/lib/utils";
 import Image from "next/image";
+import Copy from "@/components/Copy";
 
 const BankCard = ({account, userName, showBalance}: CreditCardProps) => {
     return (
         <div className="flex flex-col">
-            <Link href={"/"} className="bank-card">
+            <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className="bank-card">
                 <div className="bank-card_content">
                     <div>
                         <h1 className="text-16 font-semibold text-white">
-                            {userName}
+                            {account.name}
                         </h1>
                         <p className="font-imb-plex-serif font-black text-white">
                             {formatAmount(account.currentBalance)}
@@ -27,19 +28,20 @@ const BankCard = ({account, userName, showBalance}: CreditCardProps) => {
                             </h2>
                         </div>
                         <p className="text-14 font-semibold tracking-[1.1px] text-white">
-                            ●●●● ●●●● ●●●● <span className="text-16">1234</span>
+                            ●●●● ●●●● ●●●● <span className="text-16">{account?.mask}</span>
                         </p>
                     </article>
                 </div>
 
                 <div className="bank-card_icon">
                     <Image src="/icons/Paypass.svg" width={20} height={24} alt={"pay"}/>
-                    <Image className="ml-5" src="/icons/mastercard.svg" width={24} height={32} alt={"mastercard"}/>
+                    <Image className="ml-5" src="/icons/mastercard.svg" width={24} height={32}
+                           alt={"mastercard"}/>
                 </div>
 
                 <Image className="absolute top-0 left-0" src="/icons/lines.svg" width={316} height={190} alt={"lines"}/>
             </Link>
-
+            {showBalance && <Copy title={account?.shareableId}/>}
         </div>
     )
 }
